@@ -61,7 +61,7 @@
                         <div class="code" th:if="${sendCode} == true " style="visibility: visible ">
                             <label for="code" >Kod
                                 <br>
-                                <input type="number" placeholder="Kod" id="code">
+                                <input type="number" placeholder="Kod" id="code" name="code">
                                 <br>
                                 <span th:if="${isError} == true" th:text="Wrong code"></span>
                             </label>

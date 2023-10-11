@@ -25,8 +25,8 @@ public class SpringSecurityConfig {
     private UserDetailsService userDetailsService;
 
     public static String[] AUTH_WHITELIST = {"/css/custom.css",
-            "/css/profile.css",
-            "/css/login.css",
+            "/css/**",
+            "/img/**",
             "/auth/**",
             "/home/**"
     };
