@@ -1,0 +1,54 @@
+.navbar {
+    background-color: white;
+    width: 100%;
+    height: 67px;
+
+}
+
+.logo {
+    display: inline-block;
+}
+.logo svg {
+    max-width: 80px;
+    height: 42px;
+    display: inline-block;
+}
+
+.navbar-menu {
+    display: inline-block;
+    margin-left: 50px;
+}
+
+
+.navbar-menu_item {
+    display: inline-block;
+    padding: 10px;
+}
+
+.navbar-menu_item a {
+    color: #727c8e;
+}
+
+.navbar-menu_item a p {
+    margin-top: 7px;
+}
+
+.dashboard-icon {
+    text-align: center;
+    font-size: 18px;
+}
+
+.active {
+    border-bottom: 2px solid #2997ff;
+}
+
+.active a p {
+    color: #2997ff;
+}
+
+.active a i {
+    color: red;
+}
+
+
+

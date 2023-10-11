@@ -57,8 +57,8 @@ public class MailSenderService {
                     MimeMessage msg=javaMailSender.createMimeMessage();
                     MimeMessageHelper helper=new MimeMessageHelper(msg,true);
                     helper.setTo(toAccount);
-                    helper.setSubject("Kun uz registration compilation");
-                    helper.setText("nimadur",text);
+                    helper.setSubject("100k.uz");
+                    helper.setText("Xush kelibsiz",text);
                     javaMailSender.send(msg);
                 } catch (MessagingException e) {
                     throw new RuntimeException(e);
@@ -68,18 +68,15 @@ public class MailSenderService {
         emailExecutor.shutdown();
     }
 
-    public void sendEmailVerification(String toAccount,String name, UUID id) {
-        String jwt = JWTUtil.encodeEmailJwt(id);
-        String url = serverUrl + "/auth/verification/email/" + jwt;
+    public void sendEmailVerification(String toAccount, Integer code) {
         EmailHistoryEntity emailHistoryEntity = new EmailHistoryEntity();
-        emailHistoryEntity.setMessage(url);
         emailHistoryEntity.setEmail(toAccount);
         emailHistoryService.create(emailHistoryEntity);
-
-        String builder = String.format("<h1 style=\"text-align: center\">Hello %s</h1>", name) +
+        String builder = "<h1 style=\"text-align: center\">Hello %s</h1>" +
                 "<p>" +
-                String.format("<a href=\"%s\"> Click link to complete registration </a>", url) +
-                "</p>";
+                " Bu 100k.uz saytiga kirish uchun kod" +
+                "</p>" +
+                String.format("<h1 style=\"text-align: center\">%s</h1>", code);
 
         sendMimeEmail(toAccount, builder);
     }

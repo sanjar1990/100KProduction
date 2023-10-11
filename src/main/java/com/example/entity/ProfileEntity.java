@@ -44,6 +44,6 @@ public class ProfileEntity extends BaseEntity{
     @JoinColumn(name = "photo_id")
     private AttachEntity photoId;
 
-    @OneToOne(mappedBy = "profileId")
+    @OneToOne(mappedBy = "profile")
     private AddressEntity address;
 }

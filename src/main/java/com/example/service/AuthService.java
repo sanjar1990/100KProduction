@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
+import java.util.Random;
 import java.util.UUID;
 
 @Service
@@ -25,28 +26,25 @@ public class AuthService {
 
     @Autowired
     private MailSenderService mailSenderService;
+    private Integer currentCode;
 
-    public ApiResponseDTO login(AuthDTO dto) {
+    private Random random = new Random();
+
+    public AuthDTO login(AuthDTO dto) {
         Optional<ProfileEntity> optional = profileRepository.findByEmail(dto.getEmail());
         if (optional.isEmpty()){
             ProfileEntity entity = new ProfileEntity();
             entity.setId(UUID.randomUUID());
             entity.setEmail(dto.getEmail());
-            entity.setPassword(MD5Util.encode(dto.getPassword()));
             entity.setStatus(ProfileStatus.REGISTRATION);
             entity.setRole(ProfileRole.ROLE_CUSTOMER);
             profileRepository.save(entity);
-            mailSenderService.sendEmailVerification(entity.getEmail(), entity.getName(), entity.getId());
-            return new ApiResponseDTO(true, "The verification link was send to email.");
+
+//            return new ApiResponseDTO(true, "The verification link was send to email.");
+            return dto;
         }
 
-        ProfileEntity entity = optional.get();
-        if (!entity.getPassword().equals(dto.getPassword())){
-            throw new AppBadRequestException("Wrong password");
-        }
-
-        dto.setJwt(JWTUtil.encode(entity.getEmail(), entity.getRole()));
-        return new ApiResponseDTO(true, "Success");
+       return null;
 
     }
 
@@ -73,5 +71,19 @@ public class AuthService {
         entity.setStatus(ProfileStatus.ACTIVE);
         profileRepository.save(entity); // update
         return new ApiResponseDTO(true, "Registration completed");
+    }
+
+    public Integer getCode(AuthDTO dto) {
+        if(dto.getCode() == null){
+            currentCode = random.nextInt(1000,10000);
+            mailSenderService.sendEmailVerification(dto.getEmail(), currentCode);
+            return 1;
+        }
+        System.out.println(currentCode);
+        System.out.println(dto.getCode());
+        if (!currentCode.equals(dto.getCode())){
+            return 2;
+        }
+        return 3;
     }
 }

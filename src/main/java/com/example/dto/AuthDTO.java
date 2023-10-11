@@ -9,6 +9,5 @@ import lombok.ToString;
 @ToString
 public class AuthDTO {
     private String email;
-    private String password;
-    private String jwt;
+    private Integer code;
 }

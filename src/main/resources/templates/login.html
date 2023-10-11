@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil</title>
+<!--    <link th:rel="shortcut icon" th:href="@{../src/logo192.png}" type="image/png">-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link th:rel="stylesheet" th:href="@{/css/custom.css}">
+    <link th:rel="stylesheet" th:href="@{/css/profile.css}">
+    <link th:rel="stylesheet" th:href="@{/css/login.css}">
+<!--    <link rel="stylesheet" href="../static/css/login.css">-->
+<!--    <link rel="stylesheet" href="../static/css/index.css">-->
+</head>
+<body>
+<!---------------------------------------------------------------------->
+<!----------------------------HEADER SECTION---------------------------->
+<!---------------------------------------------------------------------->
+<header>
+    <div class="header">
+
+        <div class="headerContent">
+            <a th:href="index.html"><p><i class="fa-solid fa-arrow-left"></i>    Do'konga qaytish</p></a>
+        </div>
+
+        <div class="headerContent">
+            <a th:href="index.html"><img src="./src/100k.png" alt="100k.uz"></a>
+        </div>
+    </div>
+    <hr style="opacity: 40%;">
+</header>
+
+
+
+
+
+<!---------------------------------------------------------------------->
+<!--------------------------FORM SECTION------------------------------>
+<!---------------------------------------------------------------------->
+
+<div class="form">
+    <div class="container">
+
+        <div class="formContent">
+
+            <div class="formItem">
+
+                <form th:action="@{/auth/getCode}" method="POST" th:object="${profile}">
+
+                    <h1>Kirish</h1>
+
+                    <div class="formElement" >
+                        <label for="email" >Email
+                            <br>
+                            <input type="text" placeholder="Your email" id="email" name="email" th:field="${profile.email}" >
+                        </label>
+
+                    </div>
+
+                    <div class="formElement" >
+                        <div class="code" th:if="${sendCode} == true " style="visibility: visible ">
+                            <label for="code" >Kod
+                                <br>
+                                <input type="number" placeholder="Kod" id="code">
+                                <br>
+                                <span th:if="${isError} == true" th:text="Wrong code"></span>
+                            </label>
+                        </div>
+                    </div>
+
+<!--                    <div class="formElement">-->
+
+<!--                        &lt;!&ndash; <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 3H20C20.5523 3 21 3.44772 21 4V20C21 20.5523 20.5523 21 20 21H4C3.44772 21 3 20.5523 3 20V4C3 3.44772 3.44772 3 4 3ZM11.0026 16L18.0737 8.92893L16.6595 7.51472L11.0026 13.1716L8.17421 10.3431L6.75999 11.7574L11.0026 16Z" fill="#1CCA18" style="display: inline;"></path></svg> &ndash;&gt;-->
+<!--                        <label><input type="checkbox"> Men <a href="./privacy-policy.html" class="h-underline" target="_blank" rel="noreferrer">foydalanish shartlari</a> bilan tanishdim</label>-->
+<!--                    </div>-->
+
+                    <button type="submit">Kodni oling</button>
+                    <br>
+                </form>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+
+<!---------------------------------------------------------------------->
+<!--------------------------FOOTER SECTION------------------------------>
+<!---------------------------------------------------------------------->
+<footer class="footer">
+    <div class="footerLinks">
+        <a href="privacy-policy.html" target="_blank">Maxfiylik siyosati</a>
+        <a href="privacy-policy.html" target="_blank">Foydalanish shartlari</a>
+    </div>
+    <p>Copyright © 2020 Barcha huquqlar himoyalangan</p>
+</footer>
+</body>
+</html>

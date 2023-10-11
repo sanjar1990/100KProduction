@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.UUID;
+
 @Getter
 @Setter
 @Entity
@@ -13,8 +15,10 @@ public class AddressEntity {
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
-    @OneToOne
     @Column(name = "profile_id")
+    private UUID profileId;
+    @OneToOne
+    @JoinColumn(name = "profile_id", insertable = false, updatable = false)
     private ProfileEntity profile;
 
     @Column
