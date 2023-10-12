@@ -12,8 +12,8 @@ import java.util.UUID;
 @Entity
 @Table(name = "category")
 public class CategoryEntity extends BaseEntity {
-    @Column(name = "title")
-    private String title;
+    @Column(name = "name")
+    private String name;
 
     @Column(name = "info")
     private String info;
@@ -35,6 +35,12 @@ public class CategoryEntity extends BaseEntity {
     @OneToMany(mappedBy = "category")
     private List<ProductEntity> products;
 
+    @Column(name = "prt_id")
+    private UUID prtId;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "prt_id", insertable = false, updatable = false)
+    private ProfileEntity profileEntity;
 
 
 }

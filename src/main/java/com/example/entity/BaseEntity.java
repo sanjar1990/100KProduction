@@ -20,4 +20,5 @@ public class BaseEntity {
 
     @Column(name = "created_date")
     private LocalDateTime createdDate = LocalDateTime.now();
+
 }

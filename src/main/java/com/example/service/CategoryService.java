@@ -13,7 +13,7 @@ public class CategoryService {
     private CategoryRepository categoryRepository;
         public static CategoryEntity toEntity(CategoryDTO categoryDTO) {
             CategoryEntity entity = new CategoryEntity();
-            entity.setTitle(categoryDTO.getTitle());
+            entity.setName(categoryDTO.getTitle());
             entity.setInfo(categoryDTO.getInfo());
             entity.setPhotoId(categoryDTO.getPhotoId());
 //            entity.setProductCount(categoryDTO.getProductCount());
@@ -22,7 +22,7 @@ public class CategoryService {
 
         public static CategoryDTO toDTO(CategoryEntity categoryEntity) {
             CategoryDTO dto = new CategoryDTO();
-            dto.setTitle(categoryEntity.getTitle());
+            dto.setTitle(categoryEntity.getName());
             dto.setInfo(categoryEntity.getInfo());
             dto.setPhotoId(categoryEntity.getPhotoId());
 //            dto.setProductCount(categoryEntity.getProductCount());
