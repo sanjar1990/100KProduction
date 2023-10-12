@@ -13,7 +13,7 @@ import java.util.UUID;
 public class AddressEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
-    private String id;
+    private UUID id;
 
     @Column(name = "profile_id")
     private UUID profileId;

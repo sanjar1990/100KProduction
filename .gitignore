@@ -32,3 +32,4 @@ build/
 ### VS Code ###
 .vscode/
 /100Ktz.txt
+src/main/resources/application-*.properties

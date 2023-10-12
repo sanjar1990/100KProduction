@@ -4,12 +4,13 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Getter
 @Setter
 @ToString
 public class EmailHistoryDTO {
-    private String id;
+    private UUID id;
     private String email;
     private String message;
     private String status;
@@ -18,7 +19,7 @@ public class EmailHistoryDTO {
     public EmailHistoryDTO() {
     }
 
-    public EmailHistoryDTO(String id, String email, String message, String status, LocalDateTime createdDate) {
+    public EmailHistoryDTO(UUID id, String email, String message, String status, LocalDateTime createdDate) {
         this.id = id;
         this.email = email;
         this.message = message;
