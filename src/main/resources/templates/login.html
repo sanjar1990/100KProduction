@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profil</title>
-<!--    <link th:rel="shortcut icon" th:href="@{../src/logo192.png}" type="image/png">-->
+    <!--    <link th:rel="shortcut icon" th:href="@{../src/logo192.png}" type="image/png">-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link th:rel="stylesheet" th:href="@{/css/custom.css}">
     <link th:rel="stylesheet" th:href="@{/css/profile.css}">
     <link th:rel="stylesheet" th:href="@{/css/login.css}">
-<!--    <link rel="stylesheet" href="../static/css/login.css">-->
-<!--    <link rel="stylesheet" href="../static/css/index.css">-->
+    <!--    <link rel="stylesheet" href="../static/css/login.css">-->
+    <!--    <link rel="stylesheet" href="../static/css/index.css">-->
 </head>
 <body>
 <!---------------------------------------------------------------------->
@@ -20,7 +20,7 @@
     <div class="header">
 
         <div class="headerContent">
-            <a th:href="index.html"><p><i class="fa-solid fa-arrow-left"></i>    Do'konga qaytish</p></a>
+            <a th:href="index.html"><p><i class="fa-solid fa-arrow-left"></i> Do'konga qaytish</p></a>
         </div>
 
         <div class="headerContent">
@@ -29,9 +29,6 @@
     </div>
     <hr style="opacity: 40%;">
 </header>
-
-
-
 
 
 <!---------------------------------------------------------------------->
@@ -45,36 +42,44 @@
 
             <div class="formItem">
 
-                <form th:action="@{/auth/getCode}" method="POST" th:object="${profile}">
+                <form th:if="${sendCode} == false " th:action="@{/auth/getCode} " method="post" th:object="${profile}">
 
                     <h1>Kirish</h1>
 
-                    <div class="formElement" >
-                        <label for="email" >Email
+                    <div class="formElement">
+                        <label for="username">Email
                             <br>
-                            <input type="text" placeholder="Your email" id="email" name="email" th:field="${profile.email}" >
+                            <input type="text" placeholder="Your email" id="username" name="username" required>
                         </label>
+                    </div>
+                    <button type="submit">Kodni oling</button>
+                    <br>
+                </form>
 
+                <form th:if="${sendCode} == true "
+                      th:action="@{/loginProcess}" method="post" >
+
+                    <h1>Kirish</h1>
+
+                    <div class="formElement">
+                        <label for="username">Email
+                            <br>
+                            <input type="text" placeholder="Your email" id="username" name="username"
+                                   th:field="${profile.username}" required>
+                        </label>
                     </div>
 
-                    <div class="formElement" >
-                        <div class="code" th:if="${sendCode} == true " style="visibility: visible ">
-                            <label for="code" >Kod
+                    <div class="formElement">
+                        <div>
+                            <label for="password">Kod
                                 <br>
-                                <input type="number" placeholder="Kod" id="code" name="code">
+                                <input type="text" placeholder="Kod" id="password" name="password" required>
                                 <br>
-                                <span th:if="${isError} == true" th:text="Wrong code"></span>
+                                <span th:if="${isError} == true" style="color: red">Wrong code</span>
                             </label>
                         </div>
                     </div>
-
-<!--                    <div class="formElement">-->
-
-<!--                        &lt;!&ndash; <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 3H20C20.5523 3 21 3.44772 21 4V20C21 20.5523 20.5523 21 20 21H4C3.44772 21 3 20.5523 3 20V4C3 3.44772 3.44772 3 4 3ZM11.0026 16L18.0737 8.92893L16.6595 7.51472L11.0026 13.1716L8.17421 10.3431L6.75999 11.7574L11.0026 16Z" fill="#1CCA18" style="display: inline;"></path></svg> &ndash;&gt;-->
-<!--                        <label><input type="checkbox"> Men <a href="./privacy-policy.html" class="h-underline" target="_blank" rel="noreferrer">foydalanish shartlari</a> bilan tanishdim</label>-->
-<!--                    </div>-->
-
-                    <button type="submit">Kodni oling</button>
+                    <button type="submit">Kirish</button>
                     <br>
                 </form>
             </div>

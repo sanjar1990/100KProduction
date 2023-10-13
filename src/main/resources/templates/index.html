@@ -1,16 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="description" content="100k.uz 100.k 100k k.uz 100-k.uz  - bu eng innavatsion goyalarni o'z ichiga olgan internet do'kon.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>100k.uz</title>
     <link rel="shortcut icon" href="./src/favicon.ico" type="image/png">
-    <link rel="stylesheet" href="@{https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css}"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
     <link th:rel="stylesheet" th:href="@{css/custom.css}"/>
     <link th:rel="stylesheet" th:href="@{css/index.css}"/>
-    <link rel="stylesheet" href="../static/css/custom.css">
-    <link rel="stylesheet" href="../static/css/index.css">
 
 </head>
 <body>
@@ -51,12 +49,12 @@
 
                     <div class="headerItem">
                         <a class="menu" href="./index.html">
-                            <img class="headerImg" th:src="@{img}" alt="100k.png">
+                            <img class="headerImg" th:src="@{img/100k.png}" alt="100k.png">
                         </a>
                     </div>
     
                     <div class="headerItem headerSearch">
-                       <form action="#" class="headerForm">
+                       <form action="#" class="headerForm" >
                         <div class="headerFormContent" style="width: 100%;">
                             <!-- <div class="headerFormItem"> -->
                                 <input type="search" placeholder="search ...">
@@ -67,9 +65,9 @@
                         </form>
                     </div>
     
-                    <div class="headerItem mine" style="position: relative;;">
-                       <a href="login.html" class="headerLink login"><i class="fa-solid fa-sign-in"></i> Kirish </a>
-                       <a href="profile.html" class="headerLink my-profile"><i class="fa-solid fa-user"></i> Mening profilim </a>
+                    <div class="headerItem mine"   style="position: relative;">
+                       <a th:href="@{/auth/login}" class="headerLink login" th:if="${auth_success} != true" ><i class="fa-solid fa-sign-in"></i> Kirish </a>
+                       <a th:href="@{/dashboard}" class="headerLink my-profile" th:if="${auth_success} == true"><i class="fa-solid fa-user"></i> Mening profilim </a>
                     </div>
                 </div>
      </header>
@@ -83,21 +81,21 @@
 
                     <div class="categoryItem">
                         <a href="categories.html">
-                            <img src="./src/1.png" alt="1.png">
+                            <img th:src="@{img/1.png}" alt="1.png">
                             <span>Elektronika<small>(20)</small></span>
                         </a>
                     </div>
 
                     <div class="categoryItem">
                         <a href="categories.html">
-                            <img src="./src/2.png" alt="2.png">
+                            <img th:src="@{src/2.png}" alt="2.png">
                             <span>Telefonlar<small>(20)</small></span>
                         </a>
                     </div>
 
                     <div class="categoryItem">
                         <a href="categories.html">
-                            <img src="./src/3.png" alt="3.png">
+                            <img th:src="@{img/3.png}" alt="3.png">
                             <span>Maishiy Texnika<small>(20)</small></span>
                         </a>
                     </div>
