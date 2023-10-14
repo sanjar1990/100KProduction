@@ -49,7 +49,7 @@
 
                     <div class="headerItem">
                         <a class="menu" href="./index.html">
-                            <img class="headerImg" th:src="@{img/100k.png}" alt="100k.png">
+                            <img class="headerImg" th:src="@{src/100k.png}" alt="100k.png">
                         </a>
                     </div>
     
@@ -67,7 +67,7 @@
     
                     <div class="headerItem mine"   style="position: relative;">
                        <a th:href="@{/auth/login}" class="headerLink login" th:if="${auth_success} != true" ><i class="fa-solid fa-sign-in"></i> Kirish </a>
-                       <a th:href="@{/dashboard}" class="headerLink my-profile" th:if="${auth_success} == true"><i class="fa-solid fa-user"></i> Mening profilim </a>
+                       <a th:href="@{/admin}" class="headerLink my-profile" th:if="${auth_success} == true"><i class="fa-solid fa-user"></i> Mening profilim </a>
                     </div>
                 </div>
      </header>
@@ -81,7 +81,7 @@
 
                     <div class="categoryItem">
                         <a href="categories.html">
-                            <img th:src="@{img/1.png}" alt="1.png">
+                            <img th:src="@{src/1.png}" alt="1.png">
                             <span>Elektronika<small>(20)</small></span>
                         </a>
                     </div>
@@ -95,7 +95,7 @@
 
                     <div class="categoryItem">
                         <a href="categories.html">
-                            <img th:src="@{img/3.png}" alt="3.png">
+                            <img th:src="@{src/3.png}" alt="3.png">
                             <span>Maishiy Texnika<small>(20)</small></span>
                         </a>
                     </div>

@@ -20,7 +20,6 @@ public class CategoryEntity extends BaseEntity {
 
     @Column(name = "photo_id")
     private UUID photoId;
-
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "photo_id", insertable = false, updatable = false)
     private AttachEntity photo;
@@ -37,7 +36,6 @@ public class CategoryEntity extends BaseEntity {
 
     @Column(name = "prt_id")
     private UUID prtId;
-
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "prt_id", insertable = false, updatable = false)
     private ProfileEntity profileEntity;
