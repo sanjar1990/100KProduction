@@ -22,7 +22,7 @@ public class ProductDTO extends BaseDTO {
     @NotNull
     private Double price;
     private Double discountPrice;
-    private UUID previewAttachId;
+    private String previewAttachId;
     private AttachEntity attachEntity;
     @NotNull
     private Integer amount;

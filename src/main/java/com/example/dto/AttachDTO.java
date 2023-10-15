@@ -11,7 +11,7 @@ import java.util.UUID;
 @Setter
 @ToString
 public class AttachDTO {
-    private UUID id;
+    private String id;
     private String originalName;
     private String path;
     private Long size;
@@ -22,7 +22,7 @@ public class AttachDTO {
     public AttachDTO() {
     }
 
-    public AttachDTO(UUID id, String originalName, String path, Long size, String extension, LocalDateTime createdDate, String url) {
+    public AttachDTO(String id, String originalName, String path, Long size, String extension, LocalDateTime createdDate, String url) {
         this.id = id;
         this.originalName = originalName;
         this.path = path;

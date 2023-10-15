@@ -19,7 +19,7 @@ public class CategoryEntity extends BaseEntity {
     private String info;
 
     @Column(name = "photo_id")
-    private UUID photoId;
+    private String photoId;
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "photo_id", insertable = false, updatable = false)
     private AttachEntity photo;

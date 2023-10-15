@@ -49,7 +49,7 @@ public class AttachService {
         if (!folder.exists()) {
             folder.mkdirs();
         }
-        UUID key = UUID.randomUUID(); // dasdasd-dasdasda-asdasda-asdasd
+        String key = UUID.randomUUID().toString(); // dasdasd-dasdasda-asdasda-asdasd
         String extension = getExtension(file.getOriginalFilename()); // jpg
         try {
             byte[] bytes = file.getBytes();
@@ -178,7 +178,7 @@ public class AttachService {
     }
 
 
-    public AttachDTO getAttachWithUrl(UUID id) {
+    public AttachDTO getAttachWithUrl(String id) {
         if (id == null) {
             return null;
         }

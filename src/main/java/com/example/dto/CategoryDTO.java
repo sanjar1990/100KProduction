@@ -16,7 +16,7 @@ public class CategoryDTO extends BaseDTO {
     @NotNull(message = "INFO SHOULD NOT BE NULL !!!")
     private String info;
     @NotNull(message = "IMAGE SHOULD NOT BE NULL !!!")
-    private UUID photoId;
+    private String photoId;
     private AttachEntity photo;
     @NotNull(message = "COUNT SHOULD NOT BE NULL !!!")
     private Integer productCount;

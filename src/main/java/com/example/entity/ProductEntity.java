@@ -30,7 +30,7 @@ public class ProductEntity extends BaseEntity{
     private Double discountPrice;
 
     @Column(name = "preview_attach_id")
-    private UUID previewAttachId;
+    private String previewAttachId;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "preview_attach_id", updatable = false, insertable = false)

@@ -10,7 +10,7 @@ import java.util.UUID;
 @Setter
 @Entity
 @Table(name = "attach")
-public class AttachEntity extends BaseEntity {
+public class AttachEntity extends StringBaseEntity {
     @Column(name = "original_name")
     private String originalName;
 
