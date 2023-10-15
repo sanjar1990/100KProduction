@@ -1,0 +1,76 @@
+.main-page{
+    width: 1300px;
+    height: 1000px;
+    background-color: black;
+    box-sizing: border-box;
+}
+
+.users-info {
+    width: 70%;
+    height: 500px;
+    margin: 30px auto;
+    padding: 10px;
+    background-color: brown;
+}
+
+.users-info ul{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: gray;
+}
+
+.users-info ul li{
+    width: 80%;
+    height: 30px;
+    background-color: aqua;
+    margin: 10px auto;
+    list-style: none;
+}
+
+.information {
+    display: flex;
+    width: 70%;
+    float: left;
+    /*vertical-align: middle;*/
+    margin-left: 20px;
+    margin-top: 5px;
+    justify-content: space-between;
+
+}
+
+.some-info{
+}
+
+.information span{
+    margin-left: 40px;
+    width: 30%;
+}
+
+.buttons {
+    float: right;
+    margin-right: 10px;
+}
+
+.buttons button{
+    width: 30px;
+    height: 30px;
+    border-radius: 10%;
+    border: none;
+    color: #FFFFFF;
+    margin-left: 10px;
+    /*margin-top: 2px;*/
+}
+.update{
+    background-color: darkgreen;
+}
+
+.delete {
+    background-color: red;
+}
+
+
+/*.name .surname .role{*/
+/*    text-align: left;*/
+/*    */
+/*}*/
