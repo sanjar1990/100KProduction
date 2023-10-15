@@ -21,6 +21,6 @@ public class AttachEntity extends BaseEntity{
     @Column(name = "extension", nullable = false)
     private String extension;
 
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "photoId")
-    private ProfileEntity profileEntity;
+    @Column(name = "duration")
+    private String duration;
 }

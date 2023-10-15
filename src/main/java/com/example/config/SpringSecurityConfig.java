@@ -29,6 +29,9 @@ public class SpringSecurityConfig {
     public static String[] AUTH_WHITELIST = {
             "/css/**",
             "/img/**",
+            "/src/**",
+            "/api/v1/product/**",
+            "/api/v1/attach/**",
             "/auth/**",
             "/home/**",
             "/home",

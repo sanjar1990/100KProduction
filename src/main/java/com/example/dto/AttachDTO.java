@@ -5,11 +5,13 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
+
 @Getter
 @Setter
 @ToString
 public class AttachDTO {
-    private String id;
+    private UUID id;
     private String originalName;
     private String path;
     private Long size;
@@ -20,7 +22,7 @@ public class AttachDTO {
     public AttachDTO() {
     }
 
-    public AttachDTO(String id, String originalName, String path, Long size, String extension, LocalDateTime createdDate, String url) {
+    public AttachDTO(UUID id, String originalName, String path, Long size, String extension, LocalDateTime createdDate, String url) {
         this.id = id;
         this.originalName = originalName;
         this.path = path;
