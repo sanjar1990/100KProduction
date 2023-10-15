@@ -39,8 +39,8 @@ public class ProductEntity extends BaseEntity{
     @Column(name = "amount")
     private Integer amount;
 
-    @OneToMany(mappedBy = "productEntity")
-    private List<ProductTypeEntity> type; // color, size, etc, it's mixed
+    @Column(name = "type_info")
+    private String typeInfo; // color, size, etc, it's mixed
 
     @Column(name = "brand")
     private String brand; //guchi

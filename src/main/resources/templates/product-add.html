@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+
+        form {
+            background-color: #fff;
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px #888888;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        input[type="file"] {
+            width: 100%;
+            margin-top: 5px;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+            padding: 10px 20px;
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+    <title>product add</title>
+</head>
+<body>
+<!--/$@thymesVar id="productDTO" type="java"$/-->
+<form enctype="multipart/form-data" method="post"
+      th:action="${!isEdit} ? @{/api/v1/product/create} : @{/api/v1/product/edit}" th:object="${productDTO}">
+    <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" th:field="${productDTO.name}" required="required" />
+    </div>
+    <div>
+        <label for="title">Title:</label>
+        <input type="text" id="title" name="title" th:field="${productDTO.title}" required="required" />
+    </div>
+    <div>
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" th:field="${productDTO.description}" required="required"></textarea>
+    </div>
+    <div>
+        <label for="price">Price:</label>
+        <input type="number" id="price" name="price" th:field="${productDTO.price}" required="required" step="100" />
+    </div>
+    <div>
+        <label for="discountPrice">Discount Price:</label>
+        <input type="number" id="discountPrice" name="discountPrice" th:field="${productDTO.discountPrice}" step="100" />
+    </div>
+    <div>
+        <label for="amount">Amount:</label>
+        <input type="number" id="amount" name="amount" th:field="${productDTO.amount}" required="required" />
+    </div>
+    <div>
+        <label for="brand">Brand:</label>
+        <input type="text" id="brand" name="brand" th:field="${productDTO.brand}" required="required" />
+    </div>
+    <div>
+        <label for="madeIn">Made In:</label>
+        <input type="text" id="madeIn" name="madeIn" th:field="${productDTO.madeIn}" required="required" />
+    </div>
+    <div>
+        <label for="typeInfo">Type:</label>
+        <input type="text" id="typeInfo" name="typeInfo" th:field="${productDTO.typeInfo}" />
+    </div>
+    <br>
+    <div>
+        <label for="media">Media (Image/Video):</label>
+        <input type="file" id="media" name="media" />
+    </div>
+    <br>
+    <div>
+        <button type="submit">Create Product</button>
+    </div>
+</form>
+</body>
+</html>

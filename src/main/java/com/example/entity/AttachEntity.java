@@ -4,11 +4,13 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.UUID;
+
 @Getter
 @Setter
 @Entity
 @Table(name = "attach")
-public class AttachEntity extends BaseEntity{
+public class AttachEntity extends BaseEntity {
     @Column(name = "original_name")
     private String originalName;
 
@@ -23,4 +25,11 @@ public class AttachEntity extends BaseEntity{
 
     @Column(name = "duration")
     private String duration;
+
+    @Column(name = "prt_id")
+    private UUID prtId;
+
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "prt_id", insertable = false, updatable = false)
+    private ProfileEntity profileEntity;
 }

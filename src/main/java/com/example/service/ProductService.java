@@ -1,12 +1,14 @@
 package com.example.service;
 
 import com.example.dto.ApiResponseDTO;
+import com.example.dto.AttachDTO;
 import com.example.dto.ProductDTO;
 import com.example.entity.ProductEntity;
 import com.example.repository.ProductRepository;
 import com.example.util.SpringSecurityUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.UUID;
 
@@ -14,6 +16,8 @@ import java.util.UUID;
 public class ProductService {
     @Autowired
     private ProductRepository productRepository;
+    @Autowired
+    private AttachService attachService;
     private ProductEntity toEntity(ProductDTO productDTO) {
 
         ProductEntity entity = new ProductEntity();
@@ -27,7 +31,7 @@ public class ProductService {
         entity.setDiscountPrice(productDTO.getDiscountPrice());
         entity.setMediaList(productDTO.getMediaList());
         entity.setPreviewAttachId(productDTO.getPreviewAttachId());
-        entity.setType(productDTO.getType());
+        entity.setTypeInfo(productDTO.getTypeInfo());
 
         return entity;
     }
@@ -44,18 +48,20 @@ public class ProductService {
         dto.setDiscountPrice(productEntity.getDiscountPrice());
         dto.setMediaList(productEntity.getMediaList());
         dto.setPreviewAttachId(productEntity.getPreviewAttachId());
-        dto.setType(productEntity.getType());
+        dto.setTypeInfo(productEntity.getTypeInfo());
         return dto;
     }
 
-    public ApiResponseDTO create(ProductDTO productDTO) {
-        UUID prtId = SpringSecurityUtil.getCurrentProfileId();//current user
+    public ApiResponseDTO create(ProductDTO productDTO, MultipartFile media) {
+//        UUID prtId = SpringSecurityUtil.getCurrentProfileId();//current user
 
+        AttachDTO savedAttach = attachService.save(media);
         ProductEntity entity = toEntity(productDTO);
-        entity.setPrtId(prtId);
+        entity.setPreviewAttachId(savedAttach.getId());
+//        entity.setPrtId(prtId);
         try {
-            ProductEntity saved = productRepository.save(entity);
-            return new ApiResponseDTO(true, toDTO(saved));
+            ProductEntity savedProduct = productRepository.save(entity);
+            return new ApiResponseDTO(true, toDTO(savedProduct));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

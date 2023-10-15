@@ -9,13 +9,9 @@
 
     <link rel="shortcut icon" href="./src/favicon.ico" type="image/png">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
-    <link rel="stylesheet" th:href="@{css/custom.css}"/>
-    <link rel="stylesheet" th:href="@{css/product.css}">
-    <link rel="stylesheet" th:href="@{css/index.css}">
-
-    <link rel="stylesheet" href="../static/css/index.css">
-    <link rel="stylesheet" href="../static/css/custom.css">
-
+    <link rel="stylesheet" th:href="@{/css/custom.css}"  href="../static/css/custom.css"/>
+    <link rel="stylesheet" th:href="@{/css/product.css}" href="product.html">
+    <link rel="stylesheet" th:href="@{/css/index.css}" href="../static/css/index.css">
 
 </head>
 <body>
@@ -37,7 +33,7 @@
 
             <div class="productItem">
                 <div class="productImg">
-                    <img src="../static/src/11.png" alt="bu yerda rasm bor!">
+                    <img src="../static/src/11.png" th:src="@{/src/11.png}" alt="bu yerda rasm bor!">
                 </div>
                 <div class="productInfo">
                     <p>Avtomabil uchun Magnit holder</p>
@@ -53,7 +49,7 @@
 
             <div class="productItem">
                 <div class="productImg">
-                    <img src="./src/18.png" alt="bu yerda rasm bor!">
+                    <img th:src="@{/src/18.png}" alt="bu yerda rasm bor!">
                 </div>
                 <div class="productInfo">
                     <p>Avtomabil uchun Magnit holder</p>
