@@ -38,4 +38,5 @@ public class ProductDTO extends BaseDTO {
     private ProfileEntity profileEntity;
     private int rating = 0;
     private int viewCount = 0;
+    private String url;
 }

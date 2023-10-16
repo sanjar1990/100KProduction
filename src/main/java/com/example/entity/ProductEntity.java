@@ -32,7 +32,7 @@ public class ProductEntity extends BaseEntity{
     @Column(name = "preview_attach_id")
     private String previewAttachId;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "preview_attach_id", updatable = false, insertable = false)
     private AttachEntity attachEntity;
 

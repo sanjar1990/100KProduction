@@ -10,6 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -24,6 +27,7 @@ public class ProductService {
         entity.setName(productDTO.getName());
         entity.setTitle(productDTO.getTitle());
         entity.setAmount(productDTO.getAmount());
+        entity.setPrice(productDTO.getPrice());
         entity.setDescription(productDTO.getDescription());
         entity.setMadeIn(productDTO.getMadeIn());
         entity.setBrand(productDTO.getBrand());
@@ -41,6 +45,7 @@ public class ProductService {
         dto.setName(productEntity.getName());
         dto.setTitle(productEntity.getTitle());
         dto.setAmount(productEntity.getAmount());
+        dto.setPrice(productEntity.getPrice());
         dto.setDescription(productEntity.getDescription());
         dto.setMadeIn(productEntity.getMadeIn());
         dto.setBrand(productEntity.getBrand());
@@ -49,6 +54,7 @@ public class ProductService {
         dto.setMediaList(productEntity.getMediaList());
         dto.setPreviewAttachId(productEntity.getPreviewAttachId());
         dto.setTypeInfo(productEntity.getTypeInfo());
+        dto.setUrl(attachService.getUrl(productEntity.getPreviewAttachId()));
         return dto;
     }
 
@@ -65,5 +71,23 @@ public class ProductService {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public List<ProductDTO> getAll() {
+        Iterable<ProductEntity> all = productRepository.findAll();
+        LinkedList<ProductDTO> dtoList = new LinkedList<>();
+        all.forEach(entity -> {
+            dtoList.add(toDTO(entity));
+        });
+        return dtoList;
+    }
+
+    public ApiResponseDTO order(String id) {
+        Optional<ProductEntity> optional = productRepository
+                .findById(UUID.fromString(id));
+        if (optional.isPresent()) {
+            return new ApiResponseDTO(true, toDTO(optional.get()));
+        }
+        return new ApiResponseDTO(false, "ITEM NOT FOUND !!!");
     }
 }

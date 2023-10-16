@@ -37,7 +37,7 @@ public class AttachService {
     @Value("${attach.folder.name}")
     private String folderName;
 
-    @Value("{attach.url}")
+    @Value("${attach.url}")
     private String attachUrl;
 
     @Autowired
@@ -53,7 +53,7 @@ public class AttachService {
         String extension = getExtension(file.getOriginalFilename()); // jpg
         try {
             byte[] bytes = file.getBytes();
-            Path path = Paths.get(folderName + "/" + pathFolder + "/" + key + "." + extension);
+            Path path = Paths.get(folderName + "/" + pathFolder + "/" +file.getName() + "_" + key + "." + extension);
             // attaches/2022/04/23/dasdasd-dasdasda-    asdasda-asdasd.jpg
             Files.write(path, bytes);
 

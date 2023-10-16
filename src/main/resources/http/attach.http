@@ -6,3 +6,5 @@ Content-Disposition: form-data; name="file"; filename="bengalc.png"
 
 < C:\Users\xALTRONx\Desktop\bengalcat.png
 
+###
+GET http://localhost:8080/api/v1/attach/download/f7e06d94-b9b5-48d1-9c46-5f062c650879

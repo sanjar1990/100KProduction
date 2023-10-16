@@ -32,6 +32,8 @@ public class SpringSecurityConfig {
             "/img/**",
             "/src/**",
             "/api/v1/product/**",
+            "attaches/**",
+            "/attaches/**",
             "/api/v1/attach/**",
             "/auth/**",
             "/home/**",

@@ -1,13 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-3.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Product</title>
     <link rel="shortcut icon" href="./src/favicon.ico" type="image/png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link rel="stylesheet" href="./css/product.css">
-    <link rel="stylesheet" href="./css/custom.css">
+    <link rel="stylesheet" th:href="@{/css/product.css}">
+    <link rel="stylesheet" th:href="@{/css/custom.css}">
 </head>
 <body>
     <!---------------------------------------------------------------------->
@@ -18,7 +19,7 @@
         <div class="container headerContent">
 
             <div class="headerItem">
-                <a class="menu" href="../100KProduction/src/main/resources/html/index.html">
+                <a class="menu" th:href="@{/home}">
                     <img class="headerImg" src="./src/100k.png" alt="100k.png">
                 </a>
             </div>
@@ -37,7 +38,7 @@
             </div>
 
             <div class="headerItem mine" style="position: relative;;">
-               <a href="profile.html" class="headerLink"><i class="fa-solid fa-user"></i> Mening kabinetim</a>
+               <a href="#!" class="headerLink"><i class="fa-solid fa-user"></i> Mening kabinetim</a>
             </div>
         </div>
 </header>
@@ -51,14 +52,14 @@
     
         <div class="container">
 
-            <div class="productTitle">
+            <div class="productTitle" th:object="${product}">
 
-                <h1>MINI KALONKA</h1>
+                <h1 th:text="${product.getName()}">MINI KALONKA</h1>
 
                 <div class="title">
-                    <p><b>Smart watch ochki tasbex</b></p>
+                    <p th:text="${product.getTitle()}"><b>Smart watch ochki tasbex</b></p>
                     <div class="price">
-                        <strong>189,000 so'm</strong>
+                        <strong th:text="${product.getPrice()}">189,000 so'm</strong>
                         <div class="rating">
                             <i class="fa-solid fa-star"></i>
                             <i class="fa-solid fa-star"></i>
@@ -92,7 +93,7 @@
                             </div>
 
                             <div class="market">
-                                <p><a href="#">APPLE OPTOM</a></p>
+                                <p><a href="#!">APPLE OPTOM</a></p>
                             <p>
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>
@@ -104,7 +105,7 @@
                             </div>
                             
                             <div class="homeLink">
-                                <a href="../100KProduction/src/main/resources/html/index.html">Do'konning sahifasi</a>
+                                <a th:href="@{/home}">Do'konning sahifasi</a>
                             </div>
                         </div>
 
@@ -171,8 +172,8 @@
     <!---------------------------------------------------------------------->        
     <footer class="footer">
         <div class="footerLinks">
-            <a href="privacy-policy.html" target="_blank">Maxfiylik siyosati</a>
-            <a href="privacy-policy.html" target="_blank">Foydalanish shartlari</a>
+            <a href="../privacy-policy.html" target="_blank">Maxfiylik siyosati</a>
+            <a href="../privacy-policy.html" target="_blank">Foydalanish shartlari</a>
         </div>
         <p>Copyright © 2020 Barcha huquqlar himoyalangan</p>
     </footer>
