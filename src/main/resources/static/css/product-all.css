@@ -1,0 +1,62 @@
+.productItem {
+    position: relative;
+    max-width: 23%;
+    margin: 1%;
+    /* padding: 1%; */
+}
+
+.productItem:hover {
+    cursor: pointer;
+}
+
+.productImg {
+    /* width: px; */
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.productEdit {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: .5s ease;
+    background-color: #008CBA;
+}
+
+.productItem:hover .productEdit {
+    transform: translate(2px, 2px);
+    opacity: 0.8;
+}
+
+.productEdit span{
+    width: 100%;
+    color: white;
+    font-size: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.productEditBtnEdit {
+    padding: 10px;
+    font-size: 30px;
+    color: white;
+    background-color: #c2c23d;
+    font-weight: 7000;
+}
+
+.productEditBtnDelete {
+    padding: 10px;
+    font-size: 30px;
+    color: white;
+    background-color: #9a1515;
+    font-weight: 7000;
+}

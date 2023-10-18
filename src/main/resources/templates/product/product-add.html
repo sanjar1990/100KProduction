@@ -52,12 +52,14 @@
     }
 </style>
 <head>
-    <title>product add</title>
+    <title>product page</title>
 </head>
 <body>
 <!--/$@thymesVar id="productDTO" type="java"$/-->
+<h2 th:if="${!isEdit}">Create Task</h2>
+<h2 th:if="${isEdit}">EDIT Task</h2>
 <form enctype="multipart/form-data" method="post"
-      th:action="${!isEdit} ? @{/api/v1/product/create} : @{/api/v1/product/edit}" th:object="${productDTO}">
+      th:action="${isEdit} ? @{/api/v1/product/update/{id}(id=${productDTO.id})} : @{/api/v1/product/create}" th:object="${productDTO}">
     <div>
         <label for="name">Name:</label>
         <input type="text" id="name" name="name" th:field="${productDTO.name}" required="required" />
@@ -68,15 +70,15 @@
     </div>
     <div>
         <label for="description">Description:</label>
-        <textarea id="description" name="description" th:field="${productDTO.description}" required="required"></textarea>
+        <textarea id="description" name="description" th:field="${productDTO.description}" ></textarea>
     </div>
     <div>
         <label for="price">Price:</label>
-        <input type="number" id="price" name="price" th:field="${productDTO.price}" required="required" step="100" />
+        <input type="number" id="price" name="price" th:field="${productDTO.price}" required="required" step="10" />
     </div>
     <div>
         <label for="discountPrice">Discount Price:</label>
-        <input type="number" id="discountPrice" name="discountPrice" th:field="${productDTO.discountPrice}" step="100" />
+        <input type="number" id="discountPrice" name="discountPrice" th:field="${productDTO.discountPrice}" step="10" />
     </div>
     <div>
         <label for="amount">Amount:</label>
@@ -84,11 +86,11 @@
     </div>
     <div>
         <label for="brand">Brand:</label>
-        <input type="text" id="brand" name="brand" th:field="${productDTO.brand}" required="required" />
+        <input type="text" id="brand" name="brand" th:field="${productDTO.brand}" />
     </div>
     <div>
         <label for="madeIn">Made In:</label>
-        <input type="text" id="madeIn" name="madeIn" th:field="${productDTO.madeIn}" required="required" />
+        <input type="text" id="madeIn" name="madeIn" th:field="${productDTO.madeIn}" />
     </div>
     <div>
         <label for="typeInfo">Type:</label>
@@ -96,12 +98,19 @@
     </div>
     <br>
     <div>
-        <label for="media">Media (Image/Video):</label>
-        <input type="file" id="media" name="media" />
+        <label>Media (Image/Video): until 10mb</label>
+       <div th:if="${!isEdit}" >
+           <input type="file" name="media" required="required"  />
+       </div>
+        <div th:if="${isEdit}" >
+            <input type="file" name="media"   />
+        </div>
     </div>
     <br>
     <div>
-        <button type="submit">Create Product</button>
+        <input type="submit" value="Submit" th:value="${isEdit ?'Edit Product':'Create Product'}">
+        <!--<form th:action="${isEdit} ? @{/api/v1/task/edit/{id}(id=${task.id})} : @{/api/v1/task/add}" method="POST" th:object="${task}">-->
+
     </div>
 </form>
 </body>

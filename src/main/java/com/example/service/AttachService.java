@@ -13,6 +13,7 @@ import org.springframework.core.io.UrlResource;
 import org.springframework.data.domain.*;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -53,7 +54,7 @@ public class AttachService {
         String extension = getExtension(file.getOriginalFilename()); // jpg
         try {
             byte[] bytes = file.getBytes();
-            Path path = Paths.get(folderName + "/" + pathFolder + "/" +file.getName() + "_" + key + "." + extension);
+            Path path = Paths.get(folderName + "/" + pathFolder + "/" + key + "." + extension);
             // attaches/2022/04/23/dasdasd-dasdasda-    asdasda-asdasd.jpg
             Files.write(path, bytes);
 
@@ -78,21 +79,54 @@ public class AttachService {
         }
     }
 
-    public byte[] loadImageById(String id) {
+    //    public byte[] loadImageById(String id) {
+//        AttachEntity entity = get(id);
+//        try {
+//            String url = folderName + "/" + entity.getPath() + "/" + id + "." + entity.getExtension();
+//            BufferedImage originalImage = ImageIO.read(new File(url));
+//            ByteArrayOutputStream baos = new ByteArrayOutputStream();
+//            ImageIO.write(originalImage, entity.getExtension(), baos);
+//            baos.flush();
+//            byte[] imageInByte = baos.toByteArray();
+//            baos.close();
+//            return imageInByte;
+//        } catch (Exception e) {
+//            return new byte[0];
+//        }
+//    }
+    public ResponseEntity<byte[]> loadImageById(String id) {
         AttachEntity entity = get(id);
         try {
             String url = folderName + "/" + entity.getPath() + "/" + id + "." + entity.getExtension();
             BufferedImage originalImage = ImageIO.read(new File(url));
+
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
-            ImageIO.write(originalImage, entity.getExtension(), baos);
+            String contentType;
+            if ("png".equalsIgnoreCase(entity.getExtension())) {
+                ImageIO.write(originalImage, "png", baos);
+                contentType = MediaType.IMAGE_PNG_VALUE;
+            } else if ("jpg".equalsIgnoreCase(entity.getExtension()) || "jpeg".equalsIgnoreCase(entity.getExtension())) {
+                ImageIO.write(originalImage, "jpg", baos);
+                contentType = MediaType.IMAGE_JPEG_VALUE;
+            } else {
+                // Unsupported image format
+                return new ResponseEntity<>(HttpStatus.UNSUPPORTED_MEDIA_TYPE);
+            }
+
             baos.flush();
             byte[] imageInByte = baos.toByteArray();
             baos.close();
-            return imageInByte;
+
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.valueOf(contentType));
+
+            return new ResponseEntity<>(imageInByte, headers, HttpStatus.OK);
         } catch (Exception e) {
-            return new byte[0];
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
 
     public byte[] loadByIdGeneral(String id) {
         AttachEntity entity = get(id);
@@ -160,14 +194,14 @@ public class AttachService {
     }
 
     public PageImpl<AttachDTO> pagination(int page, int size) {
-        Pageable pageable = PageRequest.of(page,size, Sort.Direction.DESC, "id");
+        Pageable pageable = PageRequest.of(page, size, Sort.Direction.DESC, "id");
         Page<AttachEntity> pageObj = attachRepository.findAll(pageable);
         List<AttachDTO> studentDTOList = pageObj.stream().map(this::toDTO).collect(Collectors.toList());
         return new PageImpl<>(studentDTOList, pageable, pageObj.getTotalElements());
     }
 
     private AttachDTO toDTO(AttachEntity entity) {
-        AttachDTO dto =  new AttachDTO();
+        AttachDTO dto = new AttachDTO();
         dto.setId(entity.getId());
         dto.setUrl(entity.getPath());
         dto.setOriginalName(entity.getOriginalName());
@@ -176,7 +210,6 @@ public class AttachService {
         dto.setCreatedDate(entity.getCreatedDate());
         return dto;
     }
-
 
     public AttachDTO getAttachWithUrl(String id) {
         if (id == null) {

@@ -27,7 +27,7 @@ public class AttachController {
 
     @GetMapping(value = "/open/{id}/img", produces = MediaType.IMAGE_PNG_VALUE)
     public byte[] openImageById(@PathVariable("id") String id) {
-        return attachService.loadImageById(id);
+        return attachService.loadByIdGeneral(id);
     }
 
     @GetMapping(value = "/open/{id}/general", produces = MediaType.ALL_VALUE)
