@@ -12,14 +12,14 @@ import java.util.UUID;
 
 @Repository
 public interface ProductRepository extends JpaRepository<ProductEntity, UUID> {
+    Iterable<ProductEntity> findAllByVisibleTrue();
+
     @Query("SELECT e FROM ProductEntity e where e.visible=true ORDER BY e.createdDate DESC limit 10")
     Iterable<ProductEntity> findAllByVisibleTrueAndCreatedDateDesc();
 
 
     @Query("SELECT e FROM ProductEntity e where e.visible=true ORDER BY e.rating DESC limit 10")
     Iterable<ProductEntity> findAllByRatingDesc();
-
-    Iterable<ProductEntity> findAllByVisibleTrue();
 
     @Transactional
     @Modifying

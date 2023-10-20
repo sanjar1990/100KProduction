@@ -32,12 +32,12 @@ public class SpringSecurityConfig {
             "/img/**",
             "/src/**",
             "/api/v1/product/**",
+            "/api/v1/category/**",
             "attaches/**",
             "/attaches/**",
             "/api/v1/attach/**",
             "/auth/**",
-            "/home/**",
-            "/home",
+            "/home/**", "/home", "/", "",
             "/loginProcess"
     };
 

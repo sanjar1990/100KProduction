@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link rel="stylesheet" th:href="@{/css/adding.css}">
+    <title>category page</title>
+</head>
+<body>
+<!--/$@thymesVar id="categoryDTO" type="java"$/-->
+<h2 th:if="${!isEdit}">Create Category</h2>
+<h2 th:if="${isEdit}">EDIT Category</h2>
+<form enctype="multipart/form-data" method="post"
+      th:action="${isEdit} ? @{/api/v1/category/update/{id}(id=${categoryDTO.id})} : @{/api/v1/category/create}" th:object="${categoryDTO}">
+    <div>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" th:field="${categoryDTO.name}" required="required" />
+    </div>
+    <div>
+        <label for="info">Description:</label>
+        <textarea id="info" name="info" th:field="${categoryDTO.info}" placeholder="info..."></textarea>
+    </div>
+
+    <br>
+    <div>
+        <label>Media (Image/Video): until 10mb</label>
+        <div th:if="${!isEdit}" >
+            <input type="file" required="required">
+        </div>
+        <div th:if="${isEdit}" >
+                <input type="file">
+        </div>
+    </div>
+    <br>
+    <div>
+        <input type="submit" value="Submit" th:value="${isEdit ?'Edit Category':'Create Category'}" />
+
+        <!--<form th:action="${isEdit} ? @{/api/v1/task/edit/{id}(id=${task.id})} : @{/api/v1/task/add}" method="POST" th:object="${task}">-->
+
+    </div>
+</form>
+</body>
+</html>

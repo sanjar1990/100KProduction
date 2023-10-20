@@ -27,8 +27,8 @@
     <div class="container">
         <!--PRODUCT CONTAINER--1-->
         <div class="productHeader">
-            <div class="productHeaderItem"><h1>Yangi kelgan mahsulotlar</h1></div>
-            <div class="productHeaderItem"><a href="../category/categories.html">Barchasini ko'rish</a></div>
+            <div class="productHeaderItem"><h1>Sizning barcha qo'shgan mahsulotlaringiz</h1></div>
+            <div class="productHeaderItem"> <a th:href="@{/api/v1/product/doc}">Adminlikdan foydalanish</a></div>
         </div>
 
         <div class="productContent">
@@ -37,7 +37,7 @@
 
                 <div class="productImg">
                     <a th:href="@{/api/v1/product/gotoCreate}">
-                        <img style="width: 400px; height: 100%" th:src="@{/src/add.png}" alt="bu yerda rasm bor!">
+                        <img th:src="@{/src/add.png}" alt="bu yerda rasm bor!">
                     </a>
                 </div>
                 <div class="productInfo">

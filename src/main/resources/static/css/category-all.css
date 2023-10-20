@@ -1,0 +1,64 @@
+.categoryItem {
+    position: relative;
+    max-width: 23%;
+    margin: 1%;
+    /* padding: 1%; */
+}
+
+.categoryItem:hover {
+    cursor: pointer;
+}
+
+.categoryImg {
+    /* width: px; */
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.categoryEdit {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    opacity: 0;
+    transition: .5s ease;
+    background-color: #b1d6f1;
+}
+
+.categoryItem:hover .categoryEdit {
+    border-radius: 50%;
+    transform: translate(2px, 2px);
+    opacity: 0.8;
+}
+
+.categoryEdit span{
+    border-radius: 50%;
+    width: 100%;
+    color: white;
+    font-size: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.categoryEditBtnEdit {
+    padding: 10px;
+    font-size: 30px;
+    color: white;
+    background-color: #c2c23d;
+    font-weight: 7000;
+}
+
+.categoryEditBtnDelete {
+    padding: 10px;
+    font-size: 30px;
+    color: white;
+    background-color: #9a1515;
+    font-weight: 7000;
+}

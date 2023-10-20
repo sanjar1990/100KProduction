@@ -60,14 +60,12 @@ public class ProductController {
         return "redirect:/api/v1/product/all";
     }
 
-
     @GetMapping("/all")// TODO only for seller
     public String all(Model model) {
         List<ProductDTO> all = productService.getAll();
         model.addAttribute("productList", all);
         return "product/product-all";
     }
-
 
     @GetMapping("/order/{id}")
     public String order(@PathVariable("id") String id,
@@ -79,6 +77,11 @@ public class ProductController {
             return "product/product-order";
         }
         return "product/not-found";
+    }
+
+    @GetMapping("/doc")
+    public String productAll() {
+        return "product/product-doc";
     }
 
 }

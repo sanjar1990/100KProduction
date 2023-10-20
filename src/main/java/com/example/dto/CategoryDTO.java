@@ -11,8 +11,8 @@ import java.util.UUID;
 @Setter
 @Getter
 public class CategoryDTO extends BaseDTO {
-    @NotNull(message = "TITLE SHOULD NOT BE NULL !!!")
-    private String title;
+    @NotNull(message = "NAME SHOULD NOT BE NULL !!!")
+    private String name;
     @NotNull(message = "INFO SHOULD NOT BE NULL !!!")
     private String info;
     @NotNull(message = "IMAGE SHOULD NOT BE NULL !!!")
