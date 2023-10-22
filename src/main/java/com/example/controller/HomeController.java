@@ -17,15 +17,11 @@ import org.thymeleaf.extras.springsecurity6.util.SpringSecurityContextUtils;
 import java.util.List;
 
 @Controller
-@RequestMapping
+@RequestMapping("")
 public class HomeController {
     @Autowired
     private ProductService productService;
 
-    @GetMapping
-    public String home(Model model) {
-        return "index";
-    }
     @RequestMapping(value = {"/home", "", "/"}, method = RequestMethod.GET)
     public String index(Model model) {
         model.addAttribute("auth_success", true);

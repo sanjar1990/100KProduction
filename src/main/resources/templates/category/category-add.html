@@ -24,10 +24,10 @@
     <div>
         <label>Media (Image/Video): until 10mb</label>
         <div th:if="${!isEdit}" >
-            <input type="file" required="required">
+            <input type="file" required="required" name="media">
         </div>
         <div th:if="${isEdit}" >
-                <input type="file">
+                <input type="file" name="media">
         </div>
     </div>
     <br>
@@ -37,7 +37,7 @@
         <!--<form th:action="${isEdit} ? @{/api/v1/task/edit/{id}(id=${task.id})} : @{/api/v1/task/add}" method="POST" th:object="${task}">-->
 
     </div>
-    
+
 </form>
 </body>
 </html>

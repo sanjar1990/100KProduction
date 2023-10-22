@@ -52,11 +52,11 @@
         <label>Media (Image/Video): until 10mb</label>
        <div th:if="${!isEdit}" >
            Upload a file
-               <input type="file" required="required">
+               <input type="file" required="required" name="productImage">
        </div>
         <div th:if="${isEdit}" >
             Upload a file
-                <input type="file">
+                 <input type="file" name="productImage">
         </div>
     </div>
     <br>

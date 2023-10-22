@@ -51,7 +51,7 @@ public class CategoryController {
         return "category/category-add";
     }
 
-    @PostMapping("/update/{id}")
+    @PostMapping ("/update/{id}")
     public String update(@ModelAttribute CategoryDTO categoryDTO,
                          @PathVariable String id,
                          MultipartFile media) {

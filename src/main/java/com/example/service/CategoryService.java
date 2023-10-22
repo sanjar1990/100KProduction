@@ -31,13 +31,15 @@ public class CategoryService {
         return entity;
     }
 
-    public static CategoryDTO toDTO(CategoryEntity categoryEntity) {
+    public CategoryDTO toDTO(CategoryEntity categoryEntity) {
         CategoryDTO dto = new CategoryDTO();
         dto.setId(categoryEntity.getId());
         dto.setName(categoryEntity.getName());
         dto.setInfo(categoryEntity.getInfo());
         dto.setPhotoId(categoryEntity.getPhotoId());
 //            dto.setCategoryCount(categoryEntity.getCategoryCount()); //TODO
+        dto.setUrlImg(attachService.getUrl(dto.getPhotoId()));
+
         return dto;
     }
 
@@ -59,7 +61,7 @@ public class CategoryService {
 
 
     public List<CategoryDTO> getAll() {
-        Iterable<CategoryEntity> all = categoryRepository.findAllByVisibleTrue();
+            Iterable<CategoryEntity> all = categoryRepository.findAllByVisibleTrue();
         LinkedList<CategoryDTO> dtoList = new LinkedList<>();
         all.forEach(entity -> {
             dtoList.add(toDTO(entity));

@@ -28,8 +28,10 @@ public class ProductController {
     @PostMapping("/create")
 //    @PreAuthorize("hasRole('SELLER')")
     public String create(@ModelAttribute ProductDTO productDTO,
-                         @RequestParam("media") MultipartFile media,
+                         @RequestParam("productImage") MultipartFile media,
                          Model model) {
+
+
         ApiResponseDTO response = productService.create(productDTO, media);
         if (response.isStatus()) { // 200 true
             return "redirect:/api/v1/product/all";
@@ -55,7 +57,7 @@ public class ProductController {
     @PostMapping("/update/{id}")
     public String update(@ModelAttribute ProductDTO productDTO,
                          @PathVariable String id,
-                         MultipartFile media){
+                       @RequestParam("productImage")  MultipartFile media){
         productService.update(productDTO,id, media);
         return "redirect:/api/v1/product/all";
     }
