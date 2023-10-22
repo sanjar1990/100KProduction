@@ -48,7 +48,7 @@ public class CategoryController {
 
         model.addAttribute("categoryDTO", categoryService.getById(id));
         model.addAttribute("isEdit", true);
-        return "category/category-add";
+        return "category/category-add";//
     }
 
     @PostMapping ("/update/{id}")
