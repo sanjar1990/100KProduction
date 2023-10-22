@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <link rel="stylesheet" th:href="@{/css/adding.css}">
+    <link rel="stylesheet" th:href="@{/css/adding.css}" href="/css/adding.css">
     <title>product page</title>
 </head>
 <body>
@@ -47,16 +47,26 @@
         <label for="typeInfo">Type:</label>
         <input type="text" id="typeInfo" name="typeInfo" th:field="${productDTO.typeInfo}" />
     </div>
+    <div>
+        <label>
+            <select required="required" class="formControl" name="categoryId" th:field="*{category.id}">
+                <option value="" selected="selected">Categoryni tanlang ⬇</option>
+                <option th:each="category, iStat : ${categoryList}" th:value="${category.id}" th:text="${category.name}"></option>
+            </select>
+        </label>
+
+
+    </div>
     <br>
     <div>
-        <label>Media (Image/Video): until 10mb</label>
+        <label class="fileInputLabel">Media (Image/Video): until 10mb</label>
        <div th:if="${!isEdit}" >
            Upload a file
-               <input type="file" required="required" name="productImage">
+               <input type="file" required="required" name="productImage" class="fileInput">
        </div>
         <div th:if="${isEdit}" >
             Upload a file
-                 <input type="file" name="productImage">
+                 <input type="file" name="productImage" class="fileInput">
         </div>
     </div>
     <br>

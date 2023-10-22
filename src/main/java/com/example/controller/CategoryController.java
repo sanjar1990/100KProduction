@@ -52,7 +52,7 @@ public class CategoryController {
     }
 
     @PostMapping ("/update/{id}")
-    public String update(@ModelAttribute CategoryDTO categoryDTO,
+    public String update(@ModelAttribute CategoryDTO categoryDTO, //
                          @PathVariable String id,
                          MultipartFile media) {
         categoryService.update(categoryDTO, id, media);
@@ -65,4 +65,13 @@ public class CategoryController {
         model.addAttribute("categoryList", all);
         return "category/category-all";
     }
+
+    @GetMapping("/get-all") // for everyone
+    public String getAll(Model model) {
+        List<CategoryDTO> all = categoryService.getAllCategories();
+        model.addAttribute("categoryList", all);
+        return "category/category-all";
+    }
+
+
 }

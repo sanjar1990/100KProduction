@@ -13,9 +13,14 @@ import java.util.UUID;
 
 @Repository
 public interface CategoryRepository extends JpaRepository<CategoryEntity, UUID> {
-    Iterable<CategoryEntity> findAllByVisibleTrue();
+    Iterable<CategoryEntity> findFirst10ByVisibleTrue();
     @Transactional
     @Modifying
     @Query("update CategoryEntity p set p.visible=false where p.id=:id")
     void updateVisible(@Param("id") UUID id);
+
+    Iterable<CategoryEntity> findByNameAndVisibleTrue(String name);
+
+    Iterable<CategoryEntity> getAllByVisibleTrue();
+
 }

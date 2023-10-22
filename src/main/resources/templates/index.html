@@ -81,80 +81,10 @@
         <div class="categories">
                 <div class="container categoryContent">
 
-                    <div class="categoryItem">
-                        <a href="category/categories.html">
-                            <img th:src="@{src/1.png}" alt="1.png">
-                            <span>Elektronika<small>(20)</small></span>
-                        </a>
-                    </div>
-
-                    <div class="categoryItem">
-                        <a href="category/categories.html">
-                            <img th:src="@{src/2.png}" alt="2.png">
-                            <span>Telefonlar<small>(20)</small></span>
-                        </a>
-                    </div>
-
-                    <div class="categoryItem">
-                        <a href="category/categories.html">
-                            <img th:src="@{src/3.png}" alt="3.png">
-                            <span>Maishiy Texnika<small>(20)</small></span>
-                        </a>
-                    </div>
-
-                    <div class="categoryItem">
-                        <a href="category/categories.html">
-                            <img src="./src/4.png" alt="4.png">
-                            <span>Go'zallik<small>(20)</small></span>
-                        </a>
-                    </div>
-
-                    <div class="categoryItem">
-                        <a href="category/categories.html">
-                            <img src="./src/5.png" alt="5.png">
-                            <span>Kompyuter Texnikasi<small>(20)</small></span>
-                        </a>
-                    </div>
-
-                    <div class="categoryItem">
-                        <a href="category/categories.html">
-                            <img src="./src/6.png" alt="6.png">
-                            <span>Salomatlik<small>(20)</small></span>
-                        </a>
-                    </div>
-
-                    <div class="categoryItem">
-                        <a href="category/categories.html">
-                            <img src="./src/7.png" alt="7.png">
-                            <span>Avtoto'lovlar<small>(20)</small></span>
-                        </a>
-                    </div>
-
-                    <div class="categoryItem">
-                        <a href="category/categories.html">
-                            <img src="./src/8.png" alt="8.png">
-                            <span>Bolajonlar uchun<small>(20)</small></span>
-                        </a>
-                    </div>
-
-                    <div class="categoryItem">
-                        <a href="category/categories.html">
-                            <img src="./src/9.png" alt="9.png">
-                            <span>Kitoblar<small>(20)</small></span>
-                        </a>
-                    </div>
-
-                    <div class="categoryItem">
-                        <a href="category/categories.html">
-                            <img src="./src/10.png" alt="10.png">
-                            <span>Sovg'alar<small>(20)</small></span>
-                        </a>
-                    </div>
-
-                    <div class="categoryItem">
-                        <a href="category/categories.html">
-                            <img src="./src/10.png" alt="10.png">
-                            <span>Sovg'alar<small>(20)</small></span>
+                    <div class="categoryItem" th:each="category: ${categoryList}">
+                        <a th:href="@{/api/v1/product/get-all-by-category-id/{id}(id = ${category.id})}">
+                            <img th:src="${category.urlImg}" alt="category img">
+                            <span th:text="${category.name}"><!--<small>(20)</small>--></span>
                         </a>
                     </div>
 
@@ -172,7 +102,7 @@
                 <!--PRODUCT CONTAINER--1-->
                 <div class="productHeader">
                    <div class="productHeaderItem"> <h1>Yangi kelgan mahsulotlar</h1></div>
-                    <div class="productHeaderItem"><a href="category/categories.html">Barchasini ko'rish</a></div>
+                    <div class="productHeaderItem"><a th:href="@{/api/v1/product/get-all-products}">Barchasini ko'rish</a></div>
                 </div>
 
                 <div class="productContent">
@@ -201,7 +131,7 @@
                 <!--PRODUCT CONTAINER--2-->
                 <div class="productHeader">
                     <div class="productHeaderItem"> <h1>Ommabop mahsulotlar</h1></div>
-                     <div class="productHeaderItem"><a href="category/categories.html">Barchasini ko'rish</a></div>
+                    <div class="productHeaderItem"><a th:href="@{/api/v1/product/get-all-products}">Barchasini ko'rish</a></div>
                  </div>
 
                 <div class="productContent">

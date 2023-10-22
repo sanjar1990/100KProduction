@@ -1,7 +1,9 @@
 package com.example.controller;
 
+import com.example.dto.CategoryDTO;
 import com.example.dto.ProductDTO;
 import com.example.entity.ProfileEntity;
+import com.example.service.CategoryService;
 import com.example.service.ProductService;
 import com.example.util.SpringSecurityUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,10 +23,15 @@ import java.util.List;
 public class HomeController {
     @Autowired
     private ProductService productService;
+    @Autowired
+    private CategoryService categoryService;
 
     @RequestMapping(value = {"/home", "", "/"}, method = RequestMethod.GET)
     public String index(Model model) {
         model.addAttribute("auth_success", true);
+
+        List<CategoryDTO> categoryDTOs = categoryService.getAll();
+        model.addAttribute("categoryList", categoryDTOs);
 
         List<ProductDTO> newProducts = productService.getNewProducts(); //
         List<ProductDTO> topProducts = productService.getTopProducts(); //

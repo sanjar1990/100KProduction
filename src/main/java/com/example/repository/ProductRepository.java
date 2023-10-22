@@ -25,4 +25,8 @@ public interface ProductRepository extends JpaRepository<ProductEntity, UUID> {
     @Modifying
     @Query("update ProductEntity p set p.visible=false where p.id=:id")
     void updateVisible(@Param("id") UUID id);
+
+    Iterable<ProductEntity> getAllByCategoryId(UUID id);
+
+    Iterable<ProductEntity> getAllByPrtIdAndVisibleTrue(UUID prtId);
 }

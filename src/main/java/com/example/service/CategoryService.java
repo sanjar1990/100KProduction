@@ -3,6 +3,7 @@ package com.example.service;
 import com.example.dto.ApiResponseDTO;
 import com.example.dto.AttachDTO;
 import com.example.dto.CategoryDTO;
+import com.example.dto.ProductDTO;
 import com.example.entity.CategoryEntity;
 import com.example.exp.ItemNotFoundException;
 import com.example.repository.CategoryRepository;
@@ -21,6 +22,8 @@ public class CategoryService {
     private CategoryRepository categoryRepository;
     @Autowired
     private AttachService attachService;
+    @Autowired
+    private ProductService productService;
 
     public static CategoryEntity toEntity(CategoryDTO categoryDTO) {
         CategoryEntity entity = new CategoryEntity();
@@ -61,7 +64,26 @@ public class CategoryService {
 
 
     public List<CategoryDTO> getAll() {
-            Iterable<CategoryEntity> all = categoryRepository.findAllByVisibleTrue();
+            Iterable<CategoryEntity> all = categoryRepository.findFirst10ByVisibleTrue();
+        LinkedList<CategoryDTO> dtoList = new LinkedList<>();
+        all.forEach(entity -> {
+            dtoList.add(toDTO(entity));
+        });
+        return dtoList;
+    }
+
+    public List<CategoryDTO> getAllCategories() {
+        //TODO check ADMIN
+        Iterable<CategoryEntity> all = categoryRepository.findAll();
+        LinkedList<CategoryDTO> dtoList = new LinkedList<>();
+        all.forEach(entity -> {
+            dtoList.add(toDTO(entity));
+        });
+        return dtoList;
+    }
+
+    public List<CategoryDTO> getAllVisibleTrue() {
+        Iterable<CategoryEntity> all = categoryRepository.getAllByVisibleTrue();
         LinkedList<CategoryDTO> dtoList = new LinkedList<>();
         all.forEach(entity -> {
             dtoList.add(toDTO(entity));

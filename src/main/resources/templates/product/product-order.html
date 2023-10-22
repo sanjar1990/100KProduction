@@ -20,7 +20,7 @@
 
             <div class="headerItem">
                 <a class="menu" th:href="@{/home}">
-                    <img class="headerImg" src="./src/100k.png" alt="100k.png">
+                    <img class="headerImg" src="/src/100k.png" alt="100k.png">
                 </a>
             </div>
 
@@ -54,12 +54,12 @@
 
             <div class="productTitle" th:object="${product}">
 
-                <h1 th:text="${product.getName()}">MINI KALONKA</h1>
+                <h1 th:text="${product.name}">MINI KALONKA</h1>
 
                 <div class="title">
-                    <p th:text="${product.getTitle()}"><b>Smart watch ochki tasbex</b></p>
+                    <p th:text="${product.title}"><b>Smart watch ochki tasbex</b></p>
                     <div class="price">
-                        <strong th:text="${product.getPrice()}">189,000 so'm</strong>
+                        <strong th:text="${product.price}">189,000 so'm</strong>
                         <div class="rating">
                             <i class="fa-solid fa-star"></i>
                             <i class="fa-solid fa-star"></i>
@@ -81,7 +81,7 @@
                 <div class="productItem">
 
                     <div class="productItem">
-                        <img src="./src/product/1.png" alt="img.png">
+                        <img th:src="${product.url}" alt="img.png">
                     </div>
 
                     <div class="productElement">
@@ -93,7 +93,7 @@
                             </div>
 
                             <div class="market">
-                                <p><a href="#!">APPLE OPTOM</a></p>
+                                <p><a th:href="@{/api/v1/product/get-all-by-prtId/{prtId}(prtId=${product.prtId})}">MAHSULOTNING DO'KON SAHIFASI</a></p>
                             <p>
                                 <i class="fa fa-star"></i>
                                 <i class="fa fa-star"></i>

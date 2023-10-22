@@ -1,9 +1,10 @@
 package com.example.controller;
 
 import com.example.dto.ApiResponseDTO;
+import com.example.dto.CategoryDTO;
 import com.example.dto.ProductDTO;
+import com.example.service.CategoryService;
 import com.example.service.ProductService;
-import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,10 +18,13 @@ import java.util.List;
 public class ProductController {
     @Autowired
     private ProductService productService;
+    @Autowired
+    private CategoryService categoryService;
 
     @GetMapping("/gotoCreate")
     public String toProduct(Model model) {
         model.addAttribute("productDTO", new ProductDTO());
+        model.addAttribute("categoryList", categoryService.getAllVisibleTrue());
         model.addAttribute("isEdit", false);
         return "product/product-add";
     }
@@ -47,26 +51,41 @@ public class ProductController {
 
     @GetMapping("/gotoUpdate/{id}")
     public String goToUpdate(@PathVariable String id,
-                         Model model) {
+                             Model model) {
 
-//        ApiResponseDTO response = productService.update(id);
-        model.addAttribute("productDTO",productService.getById(id));
-        model.addAttribute("isEdit",true);
+        model.addAttribute("productDTO", productService.getById(id));
+        model.addAttribute("categoryList", categoryService.getAllVisibleTrue());
+        model.addAttribute("isEdit", true);
         return "product/product-add";
     }
+
     @PostMapping("/update/{id}")
     public String update(@ModelAttribute ProductDTO productDTO,
                          @PathVariable String id,
-                       @RequestParam("productImage")  MultipartFile media){
-        productService.update(productDTO,id, media);
+                         @RequestParam("productImage") MultipartFile media) {
+        productService.update(productDTO, id, media);
         return "redirect:/api/v1/product/all";
     }
 
     @GetMapping("/all")// TODO only for seller
     public String all(Model model) {
-        List<ProductDTO> all = productService.getAll();
-        model.addAttribute("productList", all);
+        model.addAttribute("productList", productService.getAll());
         return "product/product-all";
+    }
+
+    @GetMapping("/all-products")// for customer
+    public String getAll(Model model) {
+        model.addAttribute("productList", productService.getAll());
+
+        return "product/product-all";
+    }
+
+    @GetMapping("/get-all-products")// for customer
+    public String getAllProducts(Model model) {
+        model.addAttribute("productList", productService.getAll());
+        model.addAttribute("categoryList", categoryService.getAllVisibleTrue());
+
+        return "category/categories";
     }
 
     @GetMapping("/order/{id}")
@@ -85,5 +104,24 @@ public class ProductController {
     public String productAll() {
         return "product/product-doc";
     }
+
+
+    @GetMapping("/get-all-by-category-id/{id}") // for everyone
+    public String getAllByCategoryId(Model model,
+                                     @PathVariable("id") String id) {
+        model.addAttribute("productList", productService.getAllByCategoryId(id));
+        model.addAttribute("categoryList", categoryService.getAllVisibleTrue());
+
+        return "category/categories";
+    }
+
+    @GetMapping("/get-all-by-prtId/{prtId}") // for everyone
+    public String getAllByPrtId(Model model,
+                                @PathVariable("prtId") String prtId) {
+        model.addAttribute("productList", productService.getAllByPrtId(prtId));
+
+        return "category/categories";
+    }
+
 
 }

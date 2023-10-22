@@ -143,4 +143,22 @@ public class ProductService {
             return toDTO(optional.get());
         }
     }
+
+    public List<ProductDTO> getAllByCategoryId(String id) {
+        Iterable<ProductEntity> productEntities = productRepository.getAllByCategoryId(UUID.fromString(id));
+        List<ProductDTO> productDTOList = new LinkedList<>();
+        productEntities.forEach(product -> {
+            productDTOList.add(toDTO(product));
+        });
+        return productDTOList;
+    }
+
+    public List<ProductDTO> getAllByPrtId(String prtId) {
+        Iterable<ProductEntity> productEntities = productRepository.getAllByPrtIdAndVisibleTrue(UUID.fromString(prtId));
+        List<ProductDTO> productDTOList = new LinkedList<>();
+        productEntities.forEach(product -> {
+            productDTOList.add(toDTO(product));
+        });
+        return productDTOList;
+    }
 }

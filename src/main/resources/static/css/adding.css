@@ -65,30 +65,45 @@ input[type="submit"]:hover {
     background-color: #0056b3;
 }
 
-/*.custom-file-upload {*/
-/*    display: inline-block;*/
-/*    position: relative;*/
-/*    overflow: hidden;*/
-/*    cursor: pointer;*/
-/*    padding: 6px 12px;*/
-/*    font-size: 16px;*/
-/*    border: 1px solid #ccc;*/
-/*    border-radius: 5px;*/
-/*    background-color: #f8f8f8;*/
-/*    color: #333;*/
-/*    text-align: center;*/
-/*    white-space: nowrap;*/
-/*}*/
 
-/*input[type="file"] {*/
-/*    position: absolute;*/
-/*    font-size: 100px;*/
-/*    opacity: 0;*/
-/*    right: 0;*/
-/*    top: 0;*/
-/*}*/
+.formControl {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f8f8f8;
+    color: #333;
+    transition: border-color 0.2s;
+}
 
-/*svg {*/
-/*    vertical-align: middle;*/
-/*    margin-right: 8px;*/
-/*}*/
+.formControl:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.formControl select {
+    appearance: none;
+    background-repeat: no-repeat;
+    background-position: right center;
+}
+
+.formControl:disabled {
+    background-color: #eee;
+}
+
+.button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.button:hover {
+    background-color: #0056b3;
+}
