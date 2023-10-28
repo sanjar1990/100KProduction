@@ -21,4 +21,6 @@ public interface ProfileRepository extends CrudRepository<ProfileEntity, UUID> {
     @Transactional
     @Query("update ProfileEntity set password = :currentCode where email = :username")
     void updatePassword(@Param("username") String username, @Param("currentCode") String currentCode);
+
+    ProfileEntity getById(UUID id);
 }

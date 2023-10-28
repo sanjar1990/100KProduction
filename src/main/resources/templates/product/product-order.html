@@ -27,7 +27,7 @@
             <div class="headerItem">
                <form action="#" class="headerForm">
                 <div class="headerFormItem" style="width: 100%;">
-                    <div class="headerFormItem">
+                    <div class="headerFormItem">a
                         <input type="search" placeholder="search ...">
                     </div>
                     <div class="headerFormItem">
@@ -91,7 +91,7 @@
                             <div class="user">
                                 <i class="fa fa-user"></i>
                             </div>
-
+                        <p th:field="${product.prtId}"></p>
                             <div class="market">
                                 <p><a th:href="@{/api/v1/product/get-all-by-prtId/{prtId}(prtId=${product.prtId})}">MAHSULOTNING DO'KON SAHIFASI</a></p>
                             <p>
@@ -105,7 +105,7 @@
                             </div>
                             
                             <div class="homeLink">
-                                <a th:href="@{/home}">Do'konning sahifasi</a>
+                                <a th:href="@{/home}">Bosh_sahifa</a>
                             </div>
                         </div>
 
@@ -114,7 +114,7 @@
                 </div>
             </div>
 
-            <div class="secondProductContent">
+            <div class="secondProductContent" th:object="${profile}">
 
                 <h1>Buyurtma berish</h1>
                 <br>
@@ -124,35 +124,33 @@
                     <p>Yetqazib berish summasi manzilingizga ko'ra <strong>20000 so'mdan</strong> boshlanadi.</p>
                 </div>
 
-                <form action="php.php">
-
-                    <input type="text" placeholder="Ismingiz">
+                <form  th:action="@{/api/v1/order}" method="post" th:object="${order}">
+                    <input type="text" style="display: none" th:value="${product.id}" name="productId">
+                    <input type="text" style="display: none" th:value="${profile.id}" name="prtId">
+                    <input type="text" placeholder="Ismingiz" th:value="${profile.name}">
+                    <input type="tel" th:field="${profile.phone}" placeholder="+998 (XX) XXX-XX-XX" id="phone"> <!--pattern="\+998 \(\d{2}\) \d{3}-\d{2}-\d{2}" required>-->
                     <br>
-                    <input type="tel" placeholder="+998 (XX) XXX-XX-XX" id="phone" pattern="\+998 \(\d{2}\) \d{3}-\d{2}-\d{2}" required>
-                    <br>
 
-                    <select required="" class="formControl" name="regionId">
+                    <select class="formControl" name="regionId" th:value="${order.address}">
                                 	    <option value="" selected="selected">Hududni tanlang ⬇</option>
-                                	    <option value="13">Toshkent shahri</option>
-                                	    <option value="12">Andijon</option>
-                                	    <option value="11">Buxoro</option>
-                                	    <option value="1">Fargona</option>
-                                	    <option value="10">Jizzax</option>
-                                	    <option value="6">Namangan</option>
-                                	    <option value="7">Navoiy</option>
-                                	    <option value="8">Qashqadaryo</option>
-                                	    <option value="9">Qoraqalpogiston</option>
-                                	    <option value="5">Samarqand</option>
-                                	    <option value="3">Sirdaryo</option>
-                                	    <option value="4">Surxondaryo</option>
-                                	    <option value="2">Toshkent viloyati</option>
-                                	    <option value="14">Xorazm</option>
+                                	    <option value="Toshkent shahri">Toshkent shahri</option>
+                                	    <option value="Andijon">Andijon</option>
+                                	    <option value="Buxoro">Buxoro</option>
+                                	    <option value="Fargona">Fargona</option>
+                                	    <option value="Jizzax">Jizzax</option>
+                                	    <option value="Namangan">Namangan</option>
+                                	    <option value="Navoiy">Navoiy</option>
+                                	    <option value="Qashqadaryo">Qashqadaryo</option>
+                                	    <option value="Qoraqalpogiston">Qoraqalpogiston</option>
+                                	    <option value="Samarqand">Samarqand</option>
+                                	    <option value="Sirdaryo">Sirdaryo</option>
+                                	    <option value="Surxondaryo">Surxondaryo</option>
+                                	    <option value="Toshkent viloyati">Toshkent viloyati</option>
+                                	    <option value="Xorazm">Xorazm</option>
                                 	</select>
-                        <br>
-                        <!-- <input type="submit" class="orderProduct"></input> -->
+                        <br >
+                         <input type="submit" class="orderProduct productOrderBtn">
                 </form>
-                <button class="productOrderBtn">Buyurtma berish</button>
-                
             </div>
 
             

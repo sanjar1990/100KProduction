@@ -1,17 +1,18 @@
 package com.example.controller;
 
 import com.example.dto.ApiResponseDTO;
-import com.example.dto.CategoryDTO;
+import com.example.dto.OrderDTO;
+import com.example.dto.OrderProDTO;
 import com.example.dto.ProductDTO;
+import com.example.entity.ProfileEntity;
 import com.example.service.CategoryService;
 import com.example.service.ProductService;
+import com.example.util.SpringSecurityUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
-import java.util.List;
 
 @Controller
 @RequestMapping("/api/v1/product")
@@ -88,18 +89,6 @@ public class ProductController {
         return "category/categories";
     }
 
-    @GetMapping("/order/{id}")
-    public String order(@PathVariable("id") String id,
-                        Model model) {
-        System.out.println(id);
-        ApiResponseDTO response = productService.order(id);
-        if (response.isStatus()) {
-            model.addAttribute("product", response.getData());
-            return "product/product-order";
-        }
-        return "product/not-found";
-    }
-
     @GetMapping("/doc")
     public String productAll() {
         return "product/product-doc";
@@ -122,6 +111,24 @@ public class ProductController {
 
         return "category/categories";
     }
+
+    @GetMapping("/order/{id}")
+    public String order(@PathVariable("id") String id,
+                        Model model) {
+        System.out.println(id); // TODO CHECK prtID
+         OrderProDTO response = productService.order(id);
+//        ProfileEntity profile = SpringSecurityUtil.getProfileEntity();
+        if (response.isStatus()) {
+            model.addAttribute("order_pro", response);
+            model.addAttribute("product", response.getProduct());
+            model.addAttribute("profile", response.getProfile());
+            model.addAttribute("order", new OrderDTO());
+            return "product/product-order";
+        }
+        return "product/not-found";
+    }
+
+
 
 
 }

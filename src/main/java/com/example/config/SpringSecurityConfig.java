@@ -33,6 +33,7 @@ public class SpringSecurityConfig {
             "/src/**",
             "/api/v1/product/**",
             "/api/v1/category/**",
+            "/api/v1/order/**",
             "attaches/**",
             "/attaches/**",
             "/api/v1/attach/**",

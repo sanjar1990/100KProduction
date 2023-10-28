@@ -2,10 +2,14 @@ package com.example.service;
 
 import com.example.dto.ApiResponseDTO;
 import com.example.dto.AttachDTO;
+import com.example.dto.OrderProDTO;
 import com.example.dto.ProductDTO;
 import com.example.entity.ProductEntity;
+import com.example.entity.ProfileEntity;
 import com.example.exp.ItemNotFoundException;
 import com.example.repository.ProductRepository;
+import com.example.repository.ProfileRepository;
+import com.example.util.SpringSecurityUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -21,6 +25,8 @@ public class ProductService {
     private ProductRepository productRepository;
     @Autowired
     private AttachService attachService;
+    @Autowired
+    private ProfileRepository profileRepository;
     private ProductEntity toEntity(ProductDTO productDTO) {
 
         ProductEntity entity = new ProductEntity();
@@ -84,13 +90,15 @@ public class ProductService {
         return dtoList;
     }
 
-    public ApiResponseDTO order(String id) {
+    public OrderProDTO order(String id) {
         Optional<ProductEntity> optional = productRepository
                 .findById(UUID.fromString(id));
+//        ProfileEntity profile = SpringSecurityUtil.getProfileEntity();
+        ProfileEntity profileEntity = profileRepository.getById(UUID.fromString("f47ac10b-58cc-4372-a567-0e02b2c3d479"));
         if (optional.isPresent()) {
-            return new ApiResponseDTO(true, toDTO(optional.get()));
+            return new OrderProDTO(true, toDTO(optional.get()), profileEntity);
         }
-        return new ApiResponseDTO(false, "ITEM NOT FOUND !!!");
+        throw new ItemNotFoundException("ITEM NOT FOUND!!!");
     }
 
     public List<ProductDTO> getNewProducts() {
